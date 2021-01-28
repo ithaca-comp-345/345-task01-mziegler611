@@ -57,12 +57,28 @@ class BankAccountTest {
     @Test
     void isEmailValidTest(){
         assertTrue(BankAccount.isEmailValid( "a@b.com"));
+
+        //Edge Case
         assertFalse( BankAccount.isEmailValid(""));
-        assertFalse( BankAccount.isEmailValid("a@b.c"));
+
+        //Certain Characters not allowed
         assertFalse( BankAccount.isEmailValid("a#a@b.com"));
-        assertFalse( BankAccount.isEmailValid("a..b@b.com"));
-        assertFalse( BankAccount.isEmailValid("a.b@b..com"));
         assertFalse( BankAccount.isEmailValid("a-@b.com"));
+
+        //No full .com at end
+        assertFalse( BankAccount.isEmailValid("a@b.c"));
+        assertFalse( BankAccount.isEmailValid("a@bcom"));
+        assertTrue( BankAccount.isEmailValid("a@b.com"));
+
+        //No double ..s or too many
+        assertFalse( BankAccount.isEmailValid("a..b@b.com"));
+        assertFalse( BankAccount.isEmailValid("a.b@b.com"));
+
+        //Can't start with certain chatacters
+        assertFalse( BankAccount.isEmailValid(".a@b.com"));
+        assertTrue( BankAccount.isEmailValid("b.a@b.com"));
+       
+        
     }
 
     @Test
