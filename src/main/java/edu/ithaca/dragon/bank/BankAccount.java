@@ -19,6 +19,11 @@ public class BankAccount {
     }
 
     public double getBalance(){
+        if (balance < 0){
+            balance = 0;
+        }
+        int num  = (int)(balance * 100);
+        balance = ((double)num) /100; //two decimal places
         return balance;
     }
 
@@ -30,13 +35,19 @@ public class BankAccount {
      * @post reduces the balance by amount if amount is non-negative and smaller than balance
      */
     public void withdraw (double amount) throws InsufficientFundsException{
-        if (amount <= balance){
-            balance -= amount;
-        }
-        else {
-            throw new InsufficientFundsException("Not enough money");
+        
+        if(amount > 0){
+            int num  = (int)(amount * 100);
+            amount = ((double)num) /100; //two decimal places
+            if (amount <= balance){
+                balance -= amount;
+            }
+            else {
+                throw new InsufficientFundsException("Not enough money");
+            }
         }
     }
+    
 
 
     public static boolean isEmailValid(String email){

@@ -8,19 +8,19 @@ class BankAccountTest {
 
     @Test
     void getBalanceTest() {
-        BankAccount bankAccount = new BankAccount("a@b.com", 200);
+        BankAccount bankAccount = new BankAccount("a@b.com", 200); //Equivalence class (Works correctly)
         assertEquals(200, bankAccount.getBalance());
 
         //Balance is negative (should set it to zero)
-        BankAccount bankAccount2 = new BankAccount("a@b.com", -1);
+        BankAccount bankAccount2 = new BankAccount("a@b.com", -1); //Equivalence class any negative amount
         assertEquals(0, bankAccount2.getBalance());
 
         //Balance with a Double
-        BankAccount bankAccount3 = new BankAccount("a@b.com", 10.21);
+        BankAccount bankAccount3 = new BankAccount("a@b.com", 10.21); //Equivalence class
         assertEquals(10.21, bankAccount3.getBalance());
 
         //Balance with a Double with too many places
-        BankAccount bankAccount4 = new BankAccount("a@b.com", 10.213);
+        BankAccount bankAccount4 = new BankAccount("a@b.com", 10.213); //Equivalence class
         assertEquals(10.21, bankAccount4.getBalance());
     }
 
@@ -29,28 +29,28 @@ class BankAccountTest {
         BankAccount bankAccount = new BankAccount("a@b.com", 200);
         bankAccount.withdraw(100);
 
-        assertEquals(100, bankAccount.getBalance());
-        assertThrows(InsufficientFundsException.class, () -> bankAccount.withdraw(300));
+        assertEquals(100, bankAccount.getBalance()); //Correctly amount left from withdrawn
+        assertThrows(InsufficientFundsException.class, () -> bankAccount.withdraw(300)); //Overdrawing
 
         //Withdraw a negative amount
         bankAccount.withdraw(-100);
-        assertEquals(100, bankAccount.getBalance());
+        assertEquals(100, bankAccount.getBalance()); //Equivalence class Negative amount
         
         //Withdraw 0
         bankAccount.withdraw(0);
-        assertEquals(100, bankAccount.getBalance());
+        assertEquals(100, bankAccount.getBalance()); //Equivalence class withdrawing nothing
 
         //Edge Case
         bankAccount.withdraw(.000000000001);
-        assertEquals(100, bankAccount.getBalance());
+        assertEquals(100, bankAccount.getBalance()); //Edge Case for any number not in the correct format
 
         //Withdraw a Regular Double 
         bankAccount.withdraw(0.01);
-        assertEquals(99.99, bankAccount.getBalance());
+        assertEquals(99.99, bankAccount.getBalance());  //Equivalence class
 
         //Withdraw a Double with too many places
         bankAccount.withdraw(0.999);
-        assertEquals(99.00, bankAccount.getBalance());
+        assertEquals(99.00, bankAccount.getBalance()); //Equivalence class 
 
     }
 
