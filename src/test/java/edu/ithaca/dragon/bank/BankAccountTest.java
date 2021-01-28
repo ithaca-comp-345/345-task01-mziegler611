@@ -77,7 +77,8 @@ class BankAccountTest {
         //Can't start with certain chatacters
         assertFalse( BankAccount.isEmailValid(".a@b.com")); //Equivalence class (Checked if the email started with a period) Invalid chars covered above
         assertFalse( BankAccount.isEmailValid("b.a@b.com")); //Equivalence class (Two many periods)
-       
+        
+        //Everything case is present 
         
     }
 
