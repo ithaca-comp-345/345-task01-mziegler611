@@ -76,7 +76,7 @@ class BankAccountTest {
 
         //Can't start with certain chatacters
         assertFalse( BankAccount.isEmailValid(".a@b.com"));
-        assertTrue( BankAccount.isEmailValid("b.a@b.com"));
+        assertFalse( BankAccount.isEmailValid("b.a@b.com"));
        
         
     }
