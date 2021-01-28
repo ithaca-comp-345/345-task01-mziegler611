@@ -56,27 +56,27 @@ class BankAccountTest {
 
     @Test
     void isEmailValidTest(){
-        assertTrue(BankAccount.isEmailValid( "a@b.com"));
+        assertTrue(BankAccount.isEmailValid( "a@b.com")); //Equivalence class (base case to make sure a valid email passes)
 
         //Edge Case
-        assertFalse( BankAccount.isEmailValid(""));
+        assertFalse( BankAccount.isEmailValid("")); //Edge Case
 
         //Certain Characters not allowed
-        assertFalse( BankAccount.isEmailValid("a#a@b.com"));
-        assertFalse( BankAccount.isEmailValid("a-@b.com"));
+        assertFalse( BankAccount.isEmailValid("a#a@b.com")); //Equivalence class(Coded for all invalid symbols)
+        assertFalse( BankAccount.isEmailValid("a-@b.com")); //Equivalence class
 
         //No full .com at end
-        assertFalse( BankAccount.isEmailValid("a@b.c"));
-        assertFalse( BankAccount.isEmailValid("a@bcom"));
-        assertTrue( BankAccount.isEmailValid("a@b.com"));
+        assertFalse( BankAccount.isEmailValid("a@b.c")); //Equivalence class (Search to make sure .com is present )
+        assertFalse( BankAccount.isEmailValid("a@bcom")); //Equivalence class
+        assertTrue( BankAccount.isEmailValid("a@b.com")); //Equivalence class
 
         //No double ..s or too many
-        assertFalse( BankAccount.isEmailValid("a..b@b.com"));
-        assertFalse( BankAccount.isEmailValid("a.b@b.com"));
+        assertFalse( BankAccount.isEmailValid("a..b@b.com")); //Equivalence class (Checking for too many periods)
+        assertFalse( BankAccount.isEmailValid("a.b@b.com")); //Equivalence class
 
         //Can't start with certain chatacters
-        assertFalse( BankAccount.isEmailValid(".a@b.com"));
-        assertFalse( BankAccount.isEmailValid("b.a@b.com"));
+        assertFalse( BankAccount.isEmailValid(".a@b.com")); //Equivalence class (Checked if the email started with a period) Invalid chars covered above
+        assertFalse( BankAccount.isEmailValid("b.a@b.com")); //Equivalence class (Two many periods)
        
         
     }
